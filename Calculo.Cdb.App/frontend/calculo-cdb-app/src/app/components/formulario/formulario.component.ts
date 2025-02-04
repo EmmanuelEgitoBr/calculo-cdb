@@ -19,8 +19,8 @@ export class FormularioComponent {
 
   constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.formulario = this.fb.group({
-      valorInicial: [''],
-      meses: ['']
+      initialValue: [''],
+      months: ['']
     });
   }
 

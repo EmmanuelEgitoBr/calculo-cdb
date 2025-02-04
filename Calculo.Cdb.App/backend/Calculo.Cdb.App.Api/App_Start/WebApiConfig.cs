@@ -1,6 +1,7 @@
 ﻿using Calculo.Cdb.App.Api.Services;
 using Calculo.Cdb.App.Api.Services.Interfaces;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Unity;
 using Unity.Lifetime;
 using Unity.WebApi;
@@ -19,6 +20,10 @@ namespace Calculo.Cdb.App.Api
 
             // Aplicar DI no Web API
             config.DependencyResolver = new UnityDependencyResolver(container);
+
+            // Permitir requisições apenas do Angular (localhost:4200)
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            config.EnableCors(cors);
 
             // Rotas de API Web
             config.MapHttpAttributeRoutes();

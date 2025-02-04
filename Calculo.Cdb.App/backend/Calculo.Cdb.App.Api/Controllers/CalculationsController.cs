@@ -14,8 +14,8 @@ namespace Calculo.Cdb.App.Api.Controllers
             _calculationsService = calculationsService;
         }
 
-        [HttpPost()]
-        public ResponseModel CalculateCBD([FromBody]RequestModel model)
+        [HttpPost]
+        public ResponseModel CalculateCBD([FromBody] RequestModel model)
         {
             return _calculationsService.GetValues(model);
         }

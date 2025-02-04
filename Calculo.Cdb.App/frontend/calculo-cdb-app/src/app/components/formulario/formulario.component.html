@@ -3,20 +3,25 @@
 
     <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
       <div class="mb-3">
-        <label for="valorInicial" class="form-label">Valor inicial:</label>
-        <input type="number" id="valorInicial" class="form-control" formControlName="valorInicial">
+        <label for="initialValue" class="form-label">Valor inicial:</label>
+        <input type="number" id="initialValue" class="form-control" formControlName="initialValue">
       </div>
 
       <div class="mb-3">
-        <label for="meses" class="form-label">Tempo (meses):</label>
-        <input type="number" id="meses" class="form-control" formControlName="meses">
+        <label for="months" class="form-label">Tempo (meses):</label>
+        <input type="number" id="months" class="form-control" formControlName="months">
       </div>
 
       <button type="submit" class="btn btn-primary">Calcular valores</button>
     </form>
 
     <div *ngIf="resposta" class="mt-4">
-      <h4>Resposta da API:</h4>
-      <pre>{{ resposta | json }}</pre>
+      <h4>Resultado:</h4>
+      <hr/>
+      <h6>Valor Bruto</h6>
+      <p>R$ <strong>{{ resposta.GrossValue }}</strong></p>
+      <br/>
+      <h6>Valor Líquido</h6>
+      <p>R$ <strong>{{ resposta.NetValue }}</strong></p>
     </div>
   </div>
