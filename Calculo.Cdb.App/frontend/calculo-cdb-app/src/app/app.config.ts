@@ -8,10 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideClientHydration(withEventReplay()), 
-    provideHttpClient(withInterceptorsFromDi()), 
-  importProvidersFrom(ReactiveFormsModule),
-importProvidersFrom(CommonModule)]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withInterceptorsFromDi())]
 };

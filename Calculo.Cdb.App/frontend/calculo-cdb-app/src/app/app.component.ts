@@ -9,5 +9,5 @@ import { FormularioComponent } from './components/formulario/formulario.componen
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'calculo-cdb-app';
+  title = 'Calculadora CDB';
 }

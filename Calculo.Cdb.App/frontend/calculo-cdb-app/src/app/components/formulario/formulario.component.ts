@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { CommonModule, NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
+  imports: [NgIf, ReactiveFormsModule, CommonModule],
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
