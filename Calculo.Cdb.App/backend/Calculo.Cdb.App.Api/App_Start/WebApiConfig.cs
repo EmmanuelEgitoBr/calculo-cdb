@@ -1,4 +1,9 @@
-﻿using System.Web.Http;
+﻿using Calculo.Cdb.App.Api.Services;
+using Calculo.Cdb.App.Api.Services.Interfaces;
+using System.Web.Http;
+using Unity;
+using Unity.Lifetime;
+using Unity.WebApi;
 
 namespace Calculo.Cdb.App.Api
 {
@@ -6,7 +11,14 @@ namespace Calculo.Cdb.App.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Configuração e serviços de API Web
+            // Configuração da injeção de dependência
+            var container = new UnityContainer();
+
+            // Registrar dependências (Exemplo: ICalculationService → CalculationService)
+            container.RegisterType<ICalculationsService, CalculationsService>(new HierarchicalLifetimeManager());
+
+            // Aplicar DI no Web API
+            config.DependencyResolver = new UnityDependencyResolver(container);
 
             // Rotas de API Web
             config.MapHttpAttributeRoutes();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Calculo.Cdb.App.Api.Models;
+using Calculo.Cdb.App.Api.Services.Interfaces;
 using System.Web.Http;
 
 namespace Calculo.Cdb.App.Api.Controllers
@@ -6,31 +7,17 @@ namespace Calculo.Cdb.App.Api.Controllers
     [Route("api/calculations")]
     public class CalculationsController : ApiController
     {
-        // GET: api/Calculations
-        public IEnumerable<string> Get()
+        private readonly ICalculationsService _calculationsService;
+
+        public CalculationsController(ICalculationsService calculationsService)
         {
-            return new string[] { "value1", "value2" };
+            _calculationsService = calculationsService;
         }
 
-        // GET: api/Calculations/5
-        public string Get(int id)
+        [HttpPost()]
+        public ResponseModel CalculateCBD([FromBody]RequestModel model)
         {
-            return "value";
-        }
-
-        // POST: api/Calculations
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Calculations/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Calculations/5
-        public void Delete(int id)
-        {
+            return _calculationsService.GetValues(model);
         }
     }
 }
