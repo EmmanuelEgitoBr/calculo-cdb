@@ -7,7 +7,7 @@ namespace Calculo.Cdb.App.Api.Utils
     {
         public static ResponseModel CalculateGrossAndNetValues(CdbParameters parameters)
         {
-            if(parameters.Model.InitialValue <= 0 || parameters.Model.Months <= 0)
+            if(parameters.Model.InitialValue <= 0 || parameters.Model.Months <= 1)
             {
                 return new ResponseModel(0, 0);
             }
