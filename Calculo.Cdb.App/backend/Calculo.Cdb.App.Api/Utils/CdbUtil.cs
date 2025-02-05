@@ -7,6 +7,11 @@ namespace Calculo.Cdb.App.Api.Utils
     {
         public static ResponseModel CalculateGrossAndNetValues(CdbParameters parameters)
         {
+            if(parameters.Model.InitialValue <= 0 || parameters.Model.Months <= 0)
+            {
+                return new ResponseModel(0, 0);
+            }
+
             var grossValue = parameters.Model.InitialValue *
                 (Math.Pow(1 + (parameters.Cdi * parameters.Tb), parameters.Model.Months));
             
