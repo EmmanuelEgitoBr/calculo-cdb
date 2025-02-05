@@ -34,17 +34,89 @@ namespace Calculo.Cdb.App.UnitTests.ServiceTests
             Assert.Equal(resultValues, result);
         }
 
-        //[Fact]
-        //public void Post_DeveRetornarNotFound_QuandoProdutoNaoExiste()
-        //{
-        //    // Arrange
-        //    _calculationsServiceMock.Setup(s => s.ObterProduto(It.IsAny<int>())).Returns((Produto)null);
-        //
-        //    // Act
-        //    var result = _controller.Get(99);
-        //
-        //    // Assert
-        //    Assert.IsType<NotFoundResult>(result);
-        //}
+        [Fact]
+        public void Post_MustReturnZeroValues_WhenInitialValueIsZero()
+        {
+            // Arrange
+            var requestValues = new RequestModel { InitialValue = 0, Months = 10 };
+            var resultValues = new ResponseModel(0, 0);
+            _calculationsServiceMock.Setup(s =>
+                s.GetValues(requestValues)).Returns(resultValues);
+
+            // Act
+            var result = _controller.CalculateCBD(requestValues);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(resultValues, result);
+        }
+
+        [Fact]
+        public void Post_MustReturnZeroValues_WhenInitialValueIsNegative()
+        {
+            // Arrange
+            var requestValues = new RequestModel { InitialValue = -50000, Months = 10 };
+            var resultValues = new ResponseModel(0, 0);
+            _calculationsServiceMock.Setup(s =>
+                s.GetValues(requestValues)).Returns(resultValues);
+
+            // Act
+            var result = _controller.CalculateCBD(requestValues);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(resultValues, result);
+        }
+
+        [Fact]
+        public void Post_MustReturnZeroValues_WhenMonthIsOne()
+        {
+            // Arrange
+            var requestValues = new RequestModel { InitialValue = 1000, Months = 1 };
+            var resultValues = new ResponseModel(0, 0);
+            _calculationsServiceMock.Setup(s =>
+                s.GetValues(requestValues)).Returns(resultValues);
+
+            // Act
+            var result = _controller.CalculateCBD(requestValues);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(resultValues, result);
+        }
+
+        [Fact]
+        public void Post_MustReturnZeroValues_WhenMonthIsZero()
+        {
+            // Arrange
+            var requestValues = new RequestModel { InitialValue = 1000, Months = 0 };
+            var resultValues = new ResponseModel(0, 0);
+            _calculationsServiceMock.Setup(s =>
+                s.GetValues(requestValues)).Returns(resultValues);
+
+            // Act
+            var result = _controller.CalculateCBD(requestValues);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(resultValues, result);
+        }
+
+        [Fact]
+        public void Post_MustReturnZeroValues_WhenMonthIsNegative()
+        {
+            // Arrange
+            var requestValues = new RequestModel { InitialValue = 1000, Months = -8 };
+            var resultValues = new ResponseModel(0, 0);
+            _calculationsServiceMock.Setup(s =>
+                s.GetValues(requestValues)).Returns(resultValues);
+
+            // Act
+            var result = _controller.CalculateCBD(requestValues);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(resultValues, result);
+        }
     }
 }
